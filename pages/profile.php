@@ -1,7 +1,6 @@
 <?php 
     session_start();
     require '../db/connexion_db.php';
-    require '../part/profile_header.php';
 
     $pseudo = '';
     $email = '';
@@ -64,12 +63,16 @@
     } else {
         $img_correct = "../uploads/".$result_image['image_profile'];
     }
+
+    require '../part/profile_header.php';
                     
 ?>
 
     <div class="profile-container">
-        <div class="informations-buttons">
-            <li><a href="">Modifier ou Compléter mon profil</a></li>
+        <div class="informations-buttons" id="#formUpdate">
+            <li>
+                <a href="#formUpdate" id="modifierProfil">Modifier ou Compléter mon profil</a>
+            </li>
         </div>
         <div class="profiles">
             <div class="photo">
@@ -97,13 +100,38 @@
             </div>
         </div>
 
+        <div id="formUpdate">
+            <form  action="" method="post">
+                <div class="row">
+                    <label for="name">Nom: </label>
+                    <input type="text" name="name" id="name" placeholder="Aboubacar">
+                </div>
+                <div class="row">
+                    <label for="firstname">Prenom: </label>
+                    <input type="text" name="firstname" id="firstname" placeholder="Sangare">
+                </div>
+                <div class="row">
+                    <label for="new_pseudo">Pseudo: </label>
+                    <input type="text" name="new_pseudo" id="new_pseudo" placeholder="pseudo" value="<?= $pseudo; ?>">
+                </div>
+                <div class="row">
+                    <label for="new_email">Email: </label>
+                    <input type="email" name="new_email" id="new_email" value="<?= $email; ?>" placeholder="example@example.com">
+                </div>
+                <div class="row">
+                    <label for="date_naissance">Date de naissance: </label>
+                    <input type="date" name="date_naissance" id="date_naissance">
+                </div>
+    
+                <div class="btn-update">
+                    <input type="submit" value="Enregistrer">
+                </div>
+            </form>
+        </div>
+
         <div class="posts">
             <div class="Redaction-article">
                 <h1>Poster un article</h1>
-            </div>
-
-            <div class="comments_articles">
-                <h1>Commenter un article</h1>
             </div>
         </div>
     </div>
@@ -129,6 +157,11 @@
             }else {
                 dispPhoto.style.display = null;
             }
+        });
+
+        document.getElementById('modifierProfil').addEventListener('click', function(){
+            document.getElementById('formUpdate').style.display = "block";
+            this.style.display = "none";
         });
     </script>
 

@@ -29,7 +29,7 @@
                             setcookie('password', $password, time() + (86400 * 30), null, null, false, true);
                         }
                         
-                        header("Location: profile.php");
+                        header("Location: ../index.php");
                     } else {
                         array_push($errors, "Mauvais identifiant ou mot de passe.");
                     }

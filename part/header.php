@@ -56,8 +56,10 @@
         <div class="logo"><a href="index.php">BLOG</a></div>
         <ul class="list">
             <li><a class=<?= $index; ?> href="<?= $index_l; ?>">Accueil</a></li>
+            <?php if(!$_SESSION):?>
             <li><a class=<?= $inscription; ?> href="../pages/inscription.php">Inscrire</a></li>
             <li><a class=<?= $connexion; ?> href="../pages/connexion.php">Connecter</a></li>
+            <?php endif; ?>
             <li><a class=<?= $contact; ?> href="../pages/contact.php">Contact</a></li>
             <li><a class=<?= $about; ?> href="../pages/about.php">Informations</a></li>
         </ul>

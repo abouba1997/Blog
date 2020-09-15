@@ -1,6 +1,21 @@
 <?php 
     $link = basename($_SERVER['PHP_SELF'], '.php');
     $css_link = '../css/style.css';
+
+    require '../db/connexion_db.php';
+
+    $sql_image = "SELECT image_profile FROM members WHERE pseudo = :pseudo";
+    $req_image = $db->prepare($sql_image);
+    $req_image->execute(array('pseudo' => $pseudo));
+
+    $result_image = $req_image->fetch();
+
+    $img_correct = '';
+    if($result_image['image_profile'] == 'default.png') {
+        $img_correct = "../img/default.png";
+    } else {
+        $img_correct = "../uploads/".$result_image['image_profile'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +33,7 @@
     <header>
         <div class="logo"><a href="../index.php" class="a-titre">BLOG</a></div>
         <div class="profil-list">
-            <img class="img-profil" src="../img/Elephpant.png" alt="">
+            <img class="img-profil" src="<?=$img_correct;?>" alt="">
             <p><a class="active-link" href="../pages/logout.php">Déconnecter</a></p>
         </div>
     </header>
