@@ -109,6 +109,18 @@ hr {
     margin: 20px auto 10px auto;
 }
 
+.session-user {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.session-user img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
 .container-informations {
     display: flex;
     flex-direction: row;
@@ -464,6 +476,10 @@ footer {
     padding: 20px;
 }
 
+.profile-container .profiles .photo .disp-photo {
+    display: none;
+}
+
 .profile-container .profiles .photo, 
 .profile-container .profiles .informations {
     width: 50%;
@@ -473,6 +489,7 @@ footer {
 .profile-container .profiles .photo > div {
     margin: auto;
     text-align: center;
+    padding-top: 69px;
 }
 
 .profile-container .profiles .photo img {
@@ -481,14 +498,12 @@ footer {
     border-radius: 50%;
 }
 
-.profile-container .profiles .photo li,
-.profile-container .profiles .informations .informations-buttons li {
+.profile-container .profiles .photo li {
     list-style: none;
     margin: 30px;
 }
 
-.profile-container .profiles .photo li .bton,
-.profile-container .profiles .informations .informations-buttons li a {
+.profile-container .profiles .photo li .bton {
     text-decoration: none;
     padding: 10px 30px;
     font-size: 22px;
@@ -498,8 +513,31 @@ footer {
     border: none;
 }
 
-.profile-container .profiles .photo li .bton:hover,
-.profile-container .profiles .informations .informations-buttons li a:hover {
+.informations-buttons {
+    width: 70%;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.informations-buttons li {
+    list-style-type: none;
+}
+
+.informations-buttons a {
+    text-decoration: none;
+    font-size: 22px;
+    padding: 10px 20px;
+    background-color: #5f9cec;
+    border-radius: 30px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.informations-buttons a:hover {
+    background-color: #80b3f7;
+}
+
+.profile-container .profiles .photo li .bton:hover {
     background-color: #93c1fc;
 }
 
@@ -516,7 +554,7 @@ footer {
 }
 
 .vl {
-    height: 338px;
+    height: 468px;
     width: 2px;
     background-color: #555555;
 }

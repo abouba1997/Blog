@@ -1,4 +1,6 @@
 <?php 
+    session_start();
+
     $link = basename($_SERVER['PHP_SELF'], '.php');
     $css_link = '';
     $index = $inscription = $connexion = $contact = $about = 'active';
@@ -7,6 +9,7 @@
     if($link == 'index') {
         $index = 'active-link';
         $css_link = 'css/style.css';
+        require 'db/connexion_db.php';
     } elseif ($link == 'inscription') {
         $inscription = 'active-link';
         $css_link = '../css/style.css';
@@ -23,6 +26,18 @@
         $about = 'active-link';
         $css_link = '../css/style.css';
         $index_l = "../index.php";
+    }
+
+    
+    $img_profile = '';
+    if($_SESSION) {
+        $id_user = $_SESSION['id'];
+        $sql_img_prof = "SELECT image_profile FROM members WHERE id=:id";
+        $req_img_prof = $db->prepare($sql_img_prof);
+        $req_img_prof->execute(array('id'=>$id_user));
+
+        $result_img_prof = $req_img_prof->fetch();
+        $img_profile = "uploads/".$result_img_prof['image_profile'];
     }
 ?>
 
@@ -46,4 +61,9 @@
             <li><a class=<?= $contact; ?> href="../pages/contact.php">Contact</a></li>
             <li><a class=<?= $about; ?> href="../pages/about.php">Informations</a></li>
         </ul>
+        <?php if($_SESSION): ?>
+        <div class="session-user">
+            <a href="../pages/profile.php"><img src="<?= $img_profile; ?>" alt=""></a>
+        </div>
+        <?php endif; ?>
     </header>
